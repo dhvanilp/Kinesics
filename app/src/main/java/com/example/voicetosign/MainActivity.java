@@ -1,126 +1,60 @@
 package com.example.voicetosign;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Locale;
-
-import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
-import android.speech.RecognizerIntent;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.Menu;
 
-public class MainActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
-    private TextView txtSpeechInput;
-    private ImageButton btnSpeak;
-    private ImageView signImage;
-    private final int REQ_CODE_SPEECH_INPUT = 100;
+import com.google.android.material.navigation.NavigationView;
+
+
+public class MainActivity extends AppCompatActivity {
+
+    private AppBarConfiguration mAppBarConfiguration;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
-        btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
-        signImage = findViewById(R.id.sign_image);
 
-        // hide the action bar
-//        getActionBar().hide();
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
-        btnSpeak.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                promptSpeechInput();
-            }
-        });
+        setSupportActionBar(toolbar);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
+                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                .setDrawerLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
 
     }
 
-    /**
-     * Showing google speech input dialog
-     */
-    private void promptSpeechInput() {
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                getString(R.string.speech_prompt));
-        try {
-            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
-        } catch (ActivityNotFoundException a) {
-            Toast.makeText(getApplicationContext(),
-                    getString(R.string.speech_not_supported),
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    /**
-     * Receiving speech input
-     */
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case REQ_CODE_SPEECH_INPUT: {
-                if (resultCode == RESULT_OK && null != data) {
-
-                    ArrayList<String> result = data
-                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    txtSpeechInput.setText(result.get(0));
-                    displaySigns(result.get(0));
-                }
-                break;
-            }
-
-        }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
-    protected void displaySigns(final String text) {
-        final Handler handle = new Handler();
-        handle.postDelayed(new Runnable() {
-            int index = -1;
-
-            @Override
-            public void run() {
-                Log.d("AAAAAAAAAAAAAAAA::", String.valueOf(index));
-                ++index;
-                if (index < text.length()) {
-                    char c = text.charAt(index);
-                    displayCharImage(c);
-                    handle.postDelayed(this, 1000);
-                }
-            }
-        }, 1000);
-
-    }
-
-    protected void displayCharImage(char c) {
-        InputStream is = null;
-        try {
-            if (c == ' ')
-                is = getResources().getAssets().open("space.png");
-            else
-                is = getResources().getAssets().open(c + ".png");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Bitmap bmp = BitmapFactory.decodeStream(is);
-        signImage.setImageBitmap(bmp);
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 
 
