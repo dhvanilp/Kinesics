@@ -18,14 +18,14 @@
             android:adjustViewBounds="true"
             android:background="@null"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_menu_send" />
+            android:src="@drawable/ic_menu_profile" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:gravity="center"
-            android:hint="Share with others"
+            android:hint="This contains information about the user"
             android:textSize="30dp" />
 
     </LinearLayout>

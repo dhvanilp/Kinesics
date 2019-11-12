@@ -5,29 +5,29 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:id="@+id/nav_voice_to_sign"
+            android:icon="@drawable/ic_menu_voice_to_sign"
+            android:title="@string/menu_voice_to_sign" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_sign_to_voice"
+            android:icon="@drawable/ic_menu_sign_to_voice"
+            android:title="@string/menu_sign_to_voice" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-        <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_menu_help"
+            android:title="@string/menu_help" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Settings">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
+                android:id="@+id/nav_my_profile"
+                android:icon="@drawable/ic_menu_profile"
+                android:title="@string/menu_profile" />
+            <item
+                android:id="@+id/nav_choose_dialect"
+                android:icon="@drawable/ic_menu_choose_dialect"
+                android:title="@string/menu_language" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
