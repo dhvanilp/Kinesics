@@ -7,37 +7,37 @@
 
     <fragment
         android:id="@+id/nav_voice_to_sign"
-        android:name="com.example.voicetosign.fragmentScreens.voice_to_sign.VoiceToSignFragment"
+        android:name="com.example.kinesics.fragmentScreens.voice_to_sign.VoiceToSignFragment"
         android:label="@string/menu_voice_to_sign"
         tools:layout="@layout/fragment_voice_to_sign" />
 
     <fragment
         android:id="@+id/nav_sign_to_voice"
-        android:name="com.example.voicetosign.fragmentScreens.sign_to_voice.SignToVoiceFragment"
+        android:name="com.example.kinesics.fragmentScreens.sign_to_voice.SignToVoiceFragment"
         android:label="@string/menu_sign_to_voice"
         tools:layout="@layout/fragment_sign_to_voice" />
 
     <fragment
         android:id="@+id/nav_choose_dialect"
-        android:name="com.example.voicetosign.fragmentScreens.choose_dialect.ChooseDialectFragment"
+        android:name="com.example.kinesics.fragmentScreens.choose_dialect.ChooseDialectFragment"
         android:label="@string/menu_language"
         tools:layout="@layout/fragment_choose_dialect" />
 
     <fragment
         android:id="@+id/nav_help"
-        android:name="com.example.voicetosign.fragmentScreens.help.HelpFragment"
+        android:name="com.example.kinesics.fragmentScreens.help.HelpFragment"
         android:label="@string/menu_help"
         tools:layout="@layout/fragment_help" />
 
     <fragment
         android:id="@+id/nav_my_profile"
-        android:name="com.example.voicetosign.fragmentScreens.my_profile.MyProfileFragment"
+        android:name="com.example.kinesics.fragmentScreens.my_profile.MyProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_my_profile" />
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="com.example.voicetosign.fragmentScreens.send.SendFragment"
+        android:name="com.example.kinesics.fragmentScreens.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
 </navigation>
